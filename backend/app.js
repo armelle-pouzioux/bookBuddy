@@ -2,7 +2,6 @@ import express from "express";
 import mongoose from "mongoose";
 import dotenv from "dotenv";
 import cors from "cors";
-
 import bookRoutes from "./src/routes/book.routes.js";
 
 dotenv.config();
@@ -19,15 +18,12 @@ app.get("/", (req, res) => {
   res.send("API BookBuddy connectée 📚");
 });
 
-
-
-
+//Routes
+app.use("/books", bookRoutes);
 
 // Connexion à MongoDB
-mongoose.connect(process.env.MONGO_URI, {
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
-})
+mongoose.connect(process.env.MONGO_URI)
+
 .then(() => {
   console.log("✅ Connecté à MongoDB");
   app.listen(PORT, () => {
@@ -37,6 +33,3 @@ mongoose.connect(process.env.MONGO_URI, {
 .catch((error) => {
   console.error("❌ Erreur MongoDB :", error.message);
 });
-
-//Routes
-app.use("/books", bookRoutes);
