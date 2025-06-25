@@ -3,6 +3,8 @@ import mongoose from "mongoose";
 import dotenv from "dotenv";
 import cors from "cors";
 
+import bookRoutes from "./src/routes/book.routes.js";
+
 dotenv.config();
 
 const app = express();
@@ -16,6 +18,10 @@ app.use(express.json());
 app.get("/", (req, res) => {
   res.send("API BookBuddy connectée 📚");
 });
+
+
+
+
 
 // Connexion à MongoDB
 mongoose.connect(process.env.MONGO_URI, {
@@ -31,3 +37,6 @@ mongoose.connect(process.env.MONGO_URI, {
 .catch((error) => {
   console.error("❌ Erreur MongoDB :", error.message);
 });
+
+//Routes
+app.use("/books", bookRoutes);
