@@ -20,16 +20,16 @@ const bookSchema = new mongoose.Schema({
     default: 0
   },
   category: {
-  type: String,
-  enum: [
-    "Roman",
-    "BD",
-    "Livre Jeunesse & ADO",
-    "Livre Cuisine",
-    "Développement personnel et bien-être",
-    "Art et Loisir"
-  ]
-},
+    type: String,
+    enum: [
+      "Roman",
+      "BD",
+      "Livre Jeunesse & ADO",
+      "Livre Cuisine",
+      "Développement personnel et bien-être",
+      "Art et Loisir"
+    ]
+  },
   isFavorite: {
     type: Boolean,
     default: false

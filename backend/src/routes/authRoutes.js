@@ -1,21 +1,25 @@
-const authMiddlewares = require("../middlewares/authMiddlewares"); // assure-toi d'avoir ce fichier
-const express = require("express");
-const Authroutes = express.Router();
-const { body, validationResult } = require("express-validator");
-const { registerUser } = require("../controllers/authController");
-const bcrypt = require("bcryptjs");
-const jwt = require("jsonwebtoken");
-require("dotenv").config();
+// filepath: c:\Users\armel\bookBuddy\backend\src\routes\authRoutes.js
+import express from "express";
+import authMiddlewares from "../middlewares/authMiddlewares.js";
+import { registerUser } from "../controllers/authController.js";
+import { body } from "express-validator";
 
-// Exemple de route POST /api/auth/register
-Authroutes.post("/register", (req, res) => {
-  console.log("toto");
-  res.send("Register route");
-});
+const authRouter = express.Router();
 
-// Exemple de route protégée
-Authroutes.get("/protected", authMiddlewares, (req, res) => {
+// Example route POST /api/auth/register
+authRouter.post(
+  "/register",
+  [
+    body("username", "Nom requis").notEmpty(),
+    body("email", "Email invalide").isEmail(),
+    body("password", "Mot de passe requis (6 caractères min)").isLength({ min: 6 }),
+  ],
+  registerUser
+);
+
+// Example protected route
+authRouter.get("/protected", authMiddlewares, (req, res) => {
   res.json({ message: `Bienvenue utilisateur ID : ${req.user.userId}` });
 });
 
-module.exports = Authroutes;
+export default authRouter;

@@ -1,9 +1,8 @@
-const authRoutes = require("./routes/authRoutes");
-
-// backend/src/server.js
-const express = require("express");
-const dotenv = require("dotenv");
-const connectDB = require("./config/db");
+// filepath: c:\Users\armel\bookBuddy\backend\src\server.js
+import express from "express";
+import dotenv from "dotenv";
+import connectDB from "./config/db.js";
+import authRoutes from "./routes/authRoutes.js";
 
 dotenv.config();
 
@@ -17,7 +16,6 @@ app.use(express.json());
 app.get("/", (req, res) => {
   res.send("API is running");
 });
-
 
 app.use("/api/auth", authRoutes);
 

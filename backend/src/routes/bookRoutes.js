@@ -1,13 +1,15 @@
-const express = require("express");
-const router = express.Router();
-const authMiddleware = require("../middleware/authMiddleware");
+// filepath: c:\Users\armel\bookBuddy\backend\src\routes\bookRoutes.js
+import express from "express";
+import { addBook, getBooks } from "../controllers/bookController.js";
+import authMiddleware from "../middlewares/authMiddlewares.js";
 
-// Exemple de route protégée
-router.get("/protected", authMiddleware, (req, res) => {
+const bookRouter = express.Router();
+
+bookRouter.get("/protected", authMiddleware, (req, res) => {
   res.json({ message: `Bienvenue utilisateur ID : ${req.user.userId}` });
 });
 
-router.get("/me", authMiddleware, getUserBooks);
-router.post("/add", authMiddleware, addBook);
+bookRouter.post("/add", authMiddleware, addBook);
+bookRouter.get("/me", authMiddleware, getBooks);
 
-module.exports = router;
+export default bookRouter;

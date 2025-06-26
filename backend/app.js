@@ -2,7 +2,8 @@ import express from "express";
 import mongoose from "mongoose";
 import dotenv from "dotenv";
 import cors from "cors";
-import bookRoutes from "./src/routes/book.routes.js";
+import bookRouter from "./src/routes/bookRoutes.js";
+import authRouter from "./src/routes/authRoutes.js";
 
 dotenv.config();
 
@@ -18,18 +19,18 @@ app.get("/", (req, res) => {
   res.send("API BookBuddy connectée 📚");
 });
 
-//Routes
-app.use("/book", bookRoutes);
+// Routes
+app.use("/auth", authRouter);
+app.use("/book", bookRouter);
 
 // Connexion à MongoDB
 mongoose.connect(process.env.MONGO_URI)
-
-.then(() => {
-  console.log("✅ Connecté à MongoDB");
-  app.listen(PORT, () => {
-    console.log(`🚀 Serveur lancé sur http://localhost:${PORT}`);
+  .then(() => {
+    console.log("✅ Connecté à MongoDB");
+    app.listen(PORT, () => {
+      console.log(`🚀 Serveur lancé sur http://localhost:${PORT}`);
+    });
+  })
+  .catch((error) => {
+    console.error("❌ Erreur MongoDB :", error.message);
   });
-})
-.catch((error) => {
-  console.error("❌ Erreur MongoDB :", error.message);
-});

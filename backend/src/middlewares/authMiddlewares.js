@@ -1,7 +1,7 @@
-const jwt = require("jsonwebtoken");
+// filepath: c:\Users\armel\bookBuddy\backend\src\middlewares\authMiddlewares.js
+import jwt from "jsonwebtoken";
 
 const authMiddlewares = (req, res, next) => {
-  // Récupère le token dans les headers
   const authHeader = req.headers.authorization;
 
   if (!authHeader || !authHeader.startsWith("Bearer ")) {
@@ -12,11 +12,11 @@ const authMiddlewares = (req, res, next) => {
 
   try {
     const decoded = jwt.verify(token, process.env.JWT_SECRET);
-    req.user = decoded; // Tu peux utiliser req.user.userId ensuite
+    req.user = decoded;
     next();
   } catch (error) {
     return res.status(401).json({ message: "Token invalide" });
   }
 };
 
-module.exports = authMiddlewares;
+export default authMiddlewares;
