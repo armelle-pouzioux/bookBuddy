@@ -35,7 +35,8 @@ const bookSchema = new mongoose.Schema({
     default: false
   }
 }, {
-  timestamps: true
+  timestamps: true,
+  collection: "book"
 });
 
 export default mongoose.model("Book", bookSchema);

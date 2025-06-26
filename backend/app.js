@@ -19,7 +19,7 @@ app.get("/", (req, res) => {
 });
 
 //Routes
-app.use("/books", bookRoutes);
+app.use("/book", bookRoutes);
 
 // Connexion à MongoDB
 mongoose.connect(process.env.MONGO_URI)
