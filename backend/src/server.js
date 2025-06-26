@@ -1,3 +1,5 @@
+const authRoutes = require("./routes/authRoutes");
+
 // backend/src/server.js
 const express = require("express");
 const dotenv = require("dotenv");
@@ -16,7 +18,7 @@ app.get("/", (req, res) => {
   res.send("API is running");
 });
 
-const authRoutes = require("./routes/authRoutes");
+
 app.use("/api/auth", authRoutes);
 
 app.listen(PORT, () => {
