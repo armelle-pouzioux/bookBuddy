@@ -2,6 +2,7 @@
 import express from "express";
 import authMiddlewares from "../middlewares/authMiddlewares.js";
 import { registerUser } from "../controllers/authController.js";
+import { loginUser } from "../controllers/authController.js";
 import { body } from "express-validator";
 
 const authRouter = express.Router();
@@ -16,6 +17,16 @@ authRouter.post(
   ],
   registerUser
 );
+
+authRouter.post(
+  "/login",
+  [
+    body("email", "Email invalide").isEmail(),
+    body("password", "Mot de passe requis").notEmpty().withMessage("Mot de passe vide").exists().withMessage("Mot de passe manquant"),
+  ],
+  loginUser
+);
+
 
 // Example protected route
 authRouter.get("/protected", authMiddlewares, (req, res) => {

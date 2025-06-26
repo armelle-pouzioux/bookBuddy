@@ -4,9 +4,13 @@ import jwt from "jsonwebtoken";
 const authMiddlewares = (req, res, next) => {
   const authHeader = req.headers.authorization;
 
-  if (!authHeader || !authHeader.startsWith("Bearer ")) {
-    return res.status(401).json({ message: "Accès non autorisé" });
+  if (!authHeader) {
+  return res.status(401).json({ message: "Aucun token fourni" });
   }
+  if (!authHeader.startsWith("Bearer ")) {
+  return res.status(401).json({ message: "Format de token invalide" });
+  }
+
 
   const token = authHeader.split(" ")[1];
 
