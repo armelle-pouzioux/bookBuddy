@@ -1,4 +1,3 @@
-// filepath: c:\Users\armel\bookBuddy\backend\src\middlewares\authMiddlewares.js
 import jwt from "jsonwebtoken";
 
 const authMiddlewares = (req, res, next) => {
