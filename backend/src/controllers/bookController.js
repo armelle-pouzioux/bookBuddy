@@ -5,6 +5,9 @@ export const addBook = async (req, res) => {
   try {
     const newBook = new Book(req.body);
     const savedBook = await newBook.save();
+
+    await checkAndAwardRewards(req.user.userId);
+
     res.status(201).json(savedBook);
   } catch (error) {
     console.error("Erreur création livre :", error);
@@ -43,6 +46,9 @@ export const updateBook = async (req, res) => {
       { new: true }
     );
     if (!updated) return res.status(404).json({ message: "Livre non trouvé" });
+
+    await checkAndAwardRewards(req.user.userId);
+
     res.status(200).json(updated);
   } catch (err) {
     res.status(500).json({ message: "Erreur serveur" });
@@ -74,6 +80,9 @@ export const addFavorite = async (req, res) => {
 
     book.isFavorite = true;
     await book.save();
+
+    await checkAndAwardRewards(req.user.userId);
+    
     res.status(200).json({ message: "Ajouté aux favoris" });
   } catch (err) {
     res.status(500).json({ message: "Erreur serveur" });
