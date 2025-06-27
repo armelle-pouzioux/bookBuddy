@@ -4,6 +4,7 @@ import dotenv from "dotenv";
 import cors from "cors";
 import bookRouter from "./src/routes/bookRoutes.js";
 import authRouter from "./src/routes/authRoutes.js";
+import userRouter from "./src/routes/userRoutes.js";
 
 dotenv.config();
 
@@ -22,6 +23,7 @@ app.get("/", (req, res) => {
 // Routes
 app.use("/auth", authRouter);
 app.use("/book", bookRouter);
+app.use("/user", userRouter);
 
 // Connexion à MongoDB
 mongoose.connect(process.env.MONGO_URI)
