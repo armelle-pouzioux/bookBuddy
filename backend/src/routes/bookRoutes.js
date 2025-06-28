@@ -1,13 +1,21 @@
-const express = require("express");
-const router = express.Router();
-const authMiddleware = require("../middleware/authMiddleware");
+import express from "express";
+import { addBook, getBooks, getBookById, updateBook, updateProgress, addFavorite, removeFavorite,filterBooks } from "../controllers/bookController.js";
+import authMiddleware from "../middlewares/authMiddlewares.js";
 
-// Exemple de route protégée
-router.get("/protected", authMiddleware, (req, res) => {
+const bookRouter = express.Router();
+
+bookRouter.get("/protected", authMiddleware, (req, res) => {
   res.json({ message: `Bienvenue utilisateur ID : ${req.user.userId}` });
 });
 
-router.get("/me", authMiddleware, getUserBooks);
-router.post("/add", authMiddleware, addBook);
+bookRouter.post("/add", authMiddleware, addBook);
+bookRouter.get("/me", authMiddleware, getBooks);
+bookRouter.get("/:id", authMiddleware, getBookById);
+bookRouter.put("/:id", authMiddleware, updateBook);
+bookRouter.put("/:id/progress", authMiddleware, updateProgress);
+bookRouter.post("/:id/favorite", authMiddleware, addFavorite);
+bookRouter.delete("/:id/favorite", authMiddleware, removeFavorite);
+bookRouter.get("/filter", authMiddleware, filterBooks);
 
-module.exports = router;
+
+export default bookRouter;

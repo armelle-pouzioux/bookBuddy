@@ -1,5 +1,5 @@
-// backend/src/config/db.js
-const mongoose = require("mongoose");
+// filepath: c:\Users\armel\bookBuddy\backend\src\config\db.js
+import mongoose from "mongoose";
 
 const connectDB = async () => {
   try {
@@ -11,8 +11,8 @@ const connectDB = async () => {
     console.log("✅ MongoDB connected");
   } catch (error) {
     console.error("❌ MongoDB connection failed:", error.message);
-    process.exit(1); // Stop the server if the DB fails
+    process.exit(1);
   }
 };
 
-module.exports = connectDB;
+export default connectDB;
