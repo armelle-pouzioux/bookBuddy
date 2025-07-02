@@ -1,0 +1,67 @@
+.dashboard {
+  padding: 1rem;
+  max-width: 480px;
+  margin: auto;
+  background-color: #f8f8f8;
+  min-height: 100vh;
+}
+
+.dashboard-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.logo {
+  font-family: "Playfair Display", serif;
+  color: #ffffff;
+}
+
+.welcome {
+  font-style: italic;
+  margin: 1rem 0;
+}
+
+.search-bar {
+  display: flex;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+.search-bar input,
+.search-bar select {
+  flex: 1;
+  padding: 0.5rem;
+}
+
+.status-filters {
+  display: flex;
+  justify-content: space-around;
+  margin-bottom: 1rem;
+}
+
+.books-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+}
+
+.book-card {
+  background: #fff;
+  padding: 1rem;
+  border-radius: 8px;
+  text-align: center;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.dashboard-footer {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: white;
+  display: flex;
+  justify-content: space-around;
+  padding: 1rem;
+  border-top: 1px solid #ccc;
+}
