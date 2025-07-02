@@ -10,7 +10,6 @@ const authMiddlewares = (req, res, next) => {
   return res.status(401).json({ message: "Format de token invalide" });
   }
 
-
   const token = authHeader.split(" ")[1];
 
   try {

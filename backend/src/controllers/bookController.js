@@ -1,12 +1,14 @@
 import Book from "../models/Book.js";
+import { checkAndAwardRewards } from "../utils/rewardsChecker.js";
 
 // POST /book
 export const addBook = async (req, res) => {
   try {
-    const newBook = new Book(req.body);
+    const userId = req.user.userId;
+    const newBook = new Book({ ...req.body, userId });
     const savedBook = await newBook.save();
 
-    await checkAndAwardRewards(req.user.userId);
+    await checkAndAwardRewards(userId);
 
     res.status(201).json(savedBook);
   } catch (error) {

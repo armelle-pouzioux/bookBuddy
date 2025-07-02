@@ -1,5 +1,6 @@
 import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../context/AuthContext";
+import AddBookForm from "../components/AddBookForm";  
 
 export default function Dashboard() {
   const { user } = useContext(AuthContext);
@@ -8,50 +9,75 @@ export default function Dashboard() {
   const [search, setSearch] = useState("");
   const [statusFilter, setStatusFilter] = useState("all");
   const [filteredBooks, setFilteredBooks] = useState([]);
+  const [categoryFilter, setCategoryFilter] = useState("all");
   const [sortOrder, setSortOrder] = useState("recent");
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const [showAddBookForm, setShowAddBookForm] = useState(false);
 
-
-
+  // 🔁 Charger les livres et les catégories statiques
   useEffect(() => {
-    const fetchBooks = async () => {
+    const fetchBooksAndCategories = async () => {
       setLoading(true);
       setError(null);
+
       try {
         const token = localStorage.getItem("token");
 
-        const res = await fetch("http://localhost:5000/books", {
+        // Requête pour les livres de l'utilisateur
+        const bookRes = await fetch("http://localhost:5000/book/me", {
           headers: {
             Authorization: `Bearer ${token}`,
           },
         });
 
-        const data = await res.json();
+        const bookData = await bookRes.json();
 
-        if (res.ok) {
-          setBooks(data);
-
-          const uniqueCategories = [...new Set(data.map((book) => book.category))].filter(Boolean);
-          setCategories(uniqueCategories);
-        } else {
-          setError(data.message || "Erreur lors du chargement");
+        if (!bookRes.ok) {
+          throw new Error(bookData.message || "Erreur lors du chargement des livres");
         }
+
+        setBooks(bookData);
+
+        // Récupération des catégories issues des livres de l'utilisateur
+        const dynamicCategories = [...new Set(bookData.map((book) => book.category))].filter(Boolean);
+
+        // Requête pour les catégories disponibles
+        const catRes = await fetch("http://localhost:5000/book/categories", {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        });
+        const catData = await catRes.json();
+
+        if (!catRes.ok) {
+          throw new Error("Erreur lors de la récupération des catégories");
+        }
+
+        // Fusionner sans doublons
+        const mergedCategories = [...new Set([...catData, ...dynamicCategories])];
+        setCategories(mergedCategories);
+
       } catch (err) {
-        setError("Erreur réseau : " + err.message);
+        setError("❌ " + err.message);
       } finally {
         setLoading(false);
       }
     };
 
-    fetchBooks();
+    fetchBooksAndCategories();
   }, []);
 
+  // 🔍 Filtres
   useEffect(() => {
     let result = [...books];
 
     if (statusFilter !== "all") {
       result = result.filter((book) => book.status === statusFilter);
+    }
+
+    if (categoryFilter !== "all") {
+      result = result.filter((book) => book.category === categoryFilter);
     }
 
     if (search.trim() !== "") {
@@ -67,7 +93,7 @@ export default function Dashboard() {
     }
 
     setFilteredBooks(result);
-  }, [books, search, statusFilter, sortOrder]);
+  }, [books, search, statusFilter, categoryFilter, sortOrder]);
 
   return (
     <div className="dashboard">
@@ -93,17 +119,17 @@ export default function Dashboard() {
           <option value="en cours">En cours</option>
           <option value="terminé">Terminé</option>
         </select>
-        {/* Catégories dynamiques */}
-        <select>
-          <option>Toutes catégories</option>
+
+        <select onChange={(e) => setCategoryFilter(e.target.value)} value={categoryFilter}>
+          <option value="all">Toutes catégories</option>
           {categories.map((cat) => (
-            <option key={cat}>{cat}</option>
+            <option key={cat} value={cat}>{cat}</option>
           ))}
         </select>
       </div>
 
       {loading && <p>⏳ Chargement des livres...</p>}
-      {error && <p className="error">❌ {error}</p>}
+      {error && <p className="error">{error}</p>}
 
       <div className="books-grid">
         {filteredBooks.length === 0 && !loading ? (
@@ -121,9 +147,10 @@ export default function Dashboard() {
 
       <footer className="dashboard-footer">
         <button>🏠</button>
-        <button>➕</button>
+        <button onClick={() => setShowAddBookForm((prev) => !prev)}>➕</button>
         <button>❤️</button>
       </footer>
+      {showAddBookForm && <AddBookForm />}
     </div>
   );
 }

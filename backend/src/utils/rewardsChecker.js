@@ -1,7 +1,7 @@
 // src/utils/rewardsChecker.js
 import Reward from "../models/Reward.js";
 import Book from "../models/Book.js"; // ou comme tu l'as appelé
-import createReward from "../controllers/rewardsController.js"; // la fonction à extraire/exporter
+// import createReward from "../controllers/rewardsController.js"; // la fonction à extraire/exporter
 
 export const checkAndAwardRewards = async (userId) => {
   const userBooks = await Book.find({ user: userId });
