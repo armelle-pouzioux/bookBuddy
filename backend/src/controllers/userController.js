@@ -14,36 +14,46 @@ export const getUser = async (req, res) => {
 
 // PUT /user/:id
 export const updateUser = async (req, res) => {
-  const userId = req.params.id;
-
-  if (req.user.userId !== userId) {
-    return res.status(403).json({ message: "Accès refusé" });
-  }
+  const { username, email, currentPassword, newPassword } = req.body;
 
   try {
-    const user = await User.findById(userId);
+    // ⚠️ Vérifier que l'utilisateur connecté correspond à l'ID demandé
+    if (req.user.userId !== req.params.id) {
+      return res.status(403).json({ message: "Accès refusé" });
+    }
+
+    const user = await User.findById(req.params.id);
     if (!user) return res.status(404).json({ message: "Utilisateur non trouvé" });
 
-    const { username, email, oldPassword, newPassword } = req.body;
+    // ⚠️ Vérification du mot de passe actuel
+    const isMatch = await bcrypt.compare(currentPassword, user.password);
+    if (!isMatch) {
+      return res.status(400).json({ message: "Mot de passe actuel incorrect" });
+    }
 
+    // Mise à jour des champs
     if (username) user.username = username;
     if (email) user.email = email;
 
-    if (oldPassword && newPassword) {
-      const isMatch = await bcrypt.compare(oldPassword, user.password);
-      if (!isMatch) {
-        return res.status(400).json({ message: "Ancien mot de passe incorrect" });
-      }
+    if (newPassword && newPassword.length > 0) {
       const salt = await bcrypt.genSalt(10);
       user.password = await bcrypt.hash(newPassword, salt);
     }
 
     await user.save();
-    const { password, ...userSansMdp } = user.toObject(); 
-    res.status(200).json(userSansMdp);
+
+    // Réponse sans le mot de passe
+    res.json({
+      message: "Profil mis à jour",
+      user: {
+        id: user._id,
+        username: user.username,
+        email: user.email
+      }
+    });
 
   } catch (err) {
-    console.error(err);
+    console.error("Erreur update user:", err.message);
     res.status(500).json({ message: "Erreur serveur" });
   }
 };

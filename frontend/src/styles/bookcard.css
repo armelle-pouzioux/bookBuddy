@@ -1,0 +1,54 @@
+.book-card {
+  background: #fff;
+  border-radius: 10px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  overflow: hidden;
+  cursor: pointer;
+  transition: transform 0.2s;
+  width: 180px;
+}
+
+.book-card:hover {
+  transform: scale(1.02);
+}
+
+.book-cover {
+  width: 100%;
+  height: 250px;
+  object-fit: cover;
+}
+
+.book-info {
+  padding: 1rem;
+}
+
+.book-info h3 {
+  margin: 0.2rem 0;
+  font-size: 1.1rem;
+}
+
+.status {
+  display: inline-block;
+  font-size: 0.85rem;
+  margin-top: 0.4rem;
+  padding: 0.2rem 0.5rem;
+  border-radius: 5px;
+  background-color: #eee;
+}
+
+.status.à-lire {
+  background-color: #ffd700;
+}
+
+.status.en-cours {
+  background-color: #87cefa;
+}
+
+.status.terminé {
+  background-color: #90ee90;
+}
+
+.favorite {
+  float: right;
+  font-size: 1.2rem;
+}

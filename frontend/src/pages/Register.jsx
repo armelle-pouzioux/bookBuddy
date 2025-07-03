@@ -1,6 +1,7 @@
 import { useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../context/AuthContext.jsx";
+import FormWrapper from "../components/FormWrapper.jsx";
 
 
 export default function Register() {
@@ -31,12 +32,11 @@ export default function Register() {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <h2>Inscription</h2>
+    <FormWrapper title="Inscription" onSubmit={handleSubmit}>
       <input type="text" name="username" placeholder="Nom" onChange={handleChange} required />
       <input type="email" name="email" placeholder="Email" onChange={handleChange} required />
       <input type="password" name="password" placeholder="Mot de passe" onChange={handleChange} required />
       <button type="submit">S'inscrire</button>
-    </form>
+    </FormWrapper>
   );
 }

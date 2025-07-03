@@ -1,12 +1,39 @@
-import { Link } from "react-router-dom";
+import { useContext, useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import { AuthContext } from "../context/AuthContext";
+import "../styles/header.css";
 
 export default function Header() {
+  const { user, logout } = useContext(AuthContext);
+  const navigate = useNavigate();
+  const [menuOpen, setMenuOpen] = useState(false);
+
+  const handleLogout = () => {
+    logout();
+    navigate("/login");
+  };
+
   return (
-    <header style={{ background: "#7b2cbf", padding: "1rem", color: "white" }}>
-      <nav>
-        <Link to="/" style={{ marginRight: "1rem", color: "white" }}>Accueil</Link>
-        <Link to="/login" style={{ marginRight: "1rem", color: "white" }}>Connexion</Link>
-        <Link to="/register" style={{ color: "white" }}>Inscription</Link>
+    <header className="header">
+      <Link to="/" className="logo">📚 BookBuddy</Link>
+
+      <button className="menu-toggle" onClick={() => setMenuOpen(!menuOpen)}>
+        ☰
+      </button>
+
+      <nav className={`nav ${menuOpen ? "open" : ""}`}>
+        {user && (
+          <>
+            <Link to="/profile">👤 Profil</Link>
+            <button onClick={handleLogout}>🚪 Déconnexion</button>
+          </>
+        )}
+        {!user && (
+          <>
+            <Link to="/login">Connexion</Link>
+            <Link to="/register">Inscription</Link>
+          </>
+        )}
       </nav>
     </header>
   );

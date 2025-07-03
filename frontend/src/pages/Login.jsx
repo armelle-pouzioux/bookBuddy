@@ -1,7 +1,7 @@
 import { useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../context/AuthContext.jsx";
-
+import FormWrapper from "../components/FormWrapper.jsx";
 
 export default function Login() {
   const [form, setForm] = useState({ email: "", password: "" });
@@ -31,11 +31,10 @@ export default function Login() {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <h2>Connexion</h2>
+    <FormWrapper title="Connexion" onSubmit={handleSubmit}>
       <input type="email" name="email" placeholder="Email" onChange={handleChange} required />
       <input type="password" name="password" placeholder="Mot de passe" onChange={handleChange} required />
       <button type="submit">Se connecter</button>
-    </form>
+    </FormWrapper>
   );
 }
