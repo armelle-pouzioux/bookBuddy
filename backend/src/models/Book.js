@@ -22,12 +22,15 @@ const bookSchema = new mongoose.Schema({
   category: {
     type: String,
     enum: [
-      "Roman",
-      "BD",
-      "Livre Jeunesse & ADO",
-      "Livre Cuisine",
-      "Développement personnel et bien-être",
-      "Art et Loisir"
+       'fantasy',
+  'romance',
+  'science fiction',
+  'horror',
+  'history',
+  'mystery',
+  'biography',
+  'children',
+  'philosophy',
     ]
   },
   isFavorite: {

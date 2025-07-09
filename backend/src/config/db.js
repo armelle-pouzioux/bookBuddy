@@ -1,4 +1,4 @@
-// filepath: c:\Users\armel\bookBuddy\backend\src\config\db.js
+// filepath: c:\Users\armel\bookbuddy\backend\src\config\db.js
 import mongoose from "mongoose";
 
 const connectDB = async () => {

@@ -1,4 +1,4 @@
-// filepath: c:\Users\armel\bookBuddy\backend\src\server.js
+// filepath: c:\Users\armel\bookbuddy\backend\src\server.js
 import express from "express";
 import dotenv from "dotenv";
 import connectDB from "./config/db.js";
