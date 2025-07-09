@@ -1,36 +1,341 @@
+/* Book Lover Form - Literary Elegance */
+@import url('https://fonts.googleapis.com/css2?family=Crimson+Text:wght@400;600&family=Source+Sans+Pro:wght@300;400;600&display=swap');
+
+:root {
+  --parchment: #f4f1e8;
+  --warm-beige: #e8dcc6;
+  --rich-brown: #8b4513;
+  --deep-burgundy: #722f37;
+  --forest-green: #2d5016;
+  --antique-gold: #b8860b;
+  --ink-black: #2c2c2c;
+  --soft-cream: #faf8f3;
+  --leather-brown: #6b4423;
+  --vintage-red: #a0522d;
+  --page-shadow: 0 4px 20px rgba(139, 69, 19, 0.15);
+  --book-spine-shadow: 0 8px 32px rgba(114, 47, 55, 0.2);
+  --golden-glow: 0 0 20px rgba(184, 134, 11, 0.3);
+}
+
 .form {
-  max-width: 400px;
-  margin: auto;
-  background: #fff;
-  padding: 2rem;
-  border-radius: 12px;
-  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.1);
+  max-width: 450px;
+  margin: 2rem auto;
+  background: var(--parchment);
+  padding: 2.5rem;
+  border-radius: 0;
+  box-shadow: var(--book-spine-shadow);
+  position: relative;
+  border: 3px solid var(--rich-brown);
+  background-image: 
+    linear-gradient(45deg, rgba(139, 69, 19, 0.03) 25%, transparent 25%),
+    linear-gradient(-45deg, rgba(139, 69, 19, 0.03) 25%, transparent 25%),
+    linear-gradient(45deg, transparent 75%, rgba(139, 69, 19, 0.03) 75%),
+    linear-gradient(-45deg, transparent 75%, rgba(139, 69, 19, 0.03) 75%);
+  background-size: 20px 20px;
+  background-position: 0 0, 0 10px, 10px -10px, -10px 0px;
+}
+
+/* Book-like binding effect */
+.form::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  width: 8px;
+  background: linear-gradient(to bottom, var(--rich-brown), var(--leather-brown));
+  border-radius: 2px 0 0 2px;
+}
+
+.form::after {
+  content: '';
+  position: absolute;
+  top: 20px;
+  left: 2px;
+  bottom: 20px;
+  width: 4px;
+  background: var(--antique-gold);
+  border-radius: 2px;
 }
 
 .form h2 {
-  margin-bottom: 1rem;
+  font-family: 'Crimson Text', serif;
+  font-size: 2.2rem;
+  font-weight: 600;
+  color: var(--deep-burgundy);
   text-align: center;
+  margin-bottom: 1.5rem;
+  position: relative;
+  letter-spacing: 0.02em;
+  text-shadow: 0 2px 4px rgba(114, 47, 55, 0.1);
+}
+
+.form h2::before,
+.form h2::after {
+  content: '📚';
+  position: absolute;
+  top: 0;
+  font-size: 1.5rem;
+  opacity: 0.6;
+}
+
+.form h2::before {
+  left: -2.5rem;
+}
+
+.form h2::after {
+  right: -2.5rem;
+}
+
+.form h2::before {
+  content: '📖';
 }
 
 .form input,
 .form select,
+.form textarea {
+  display: block;
+  width: 100%;
+  margin-bottom: 1.5rem;
+  padding: 1rem 1.2rem;
+  font-size: 1.1rem;
+  font-family: 'Source Sans Pro', sans-serif;
+  border: 2px solid var(--warm-beige);
+  background: var(--soft-cream);
+  color: var(--ink-black);
+  border-radius: 0;
+  transition: all 0.3s ease;
+  box-shadow: inset 0 2px 4px rgba(139, 69, 19, 0.1);
+}
+
+.form input:focus,
+.form select:focus,
+.form textarea:focus {
+  outline: none;
+  border-color: var(--antique-gold);
+  background: #ffffff;
+  box-shadow: 
+    inset 0 2px 4px rgba(139, 69, 19, 0.1),
+    var(--golden-glow);
+  transform: translateY(-2px);
+}
+
+.form input::placeholder,
+.form textarea::placeholder {
+  color: rgba(44, 44, 44, 0.6);
+  font-style: italic;
+  font-family: 'Crimson Text', serif;
+}
+
+.form select {
+  cursor: pointer;
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%23722f37' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='M6 8l4 4 4-4'/%3e%3c/svg%3e");
+  background-position: right 0.5rem center;
+  background-repeat: no-repeat;
+  background-size: 1.5em 1.5em;
+  padding-right: 2.5rem;
+}
+
+.form select option {
+  background: var(--soft-cream);
+  color: var(--ink-black);
+  padding: 0.5rem;
+}
+
+.form textarea {
+  resize: vertical;
+  min-height: 100px;
+  font-family: 'Source Sans Pro', sans-serif;
+  line-height: 1.6;
+}
+
 .form button {
   display: block;
   width: 100%;
-  margin-bottom: 1rem;
-  padding: 0.8rem;
-  font-size: 1rem;
-  border-radius: 6px;
-  border: 1px solid #ccc;
+  padding: 1.2rem;
+  font-size: 1.1rem;
+  font-weight: 600;
+  font-family: 'Source Sans Pro', sans-serif;
+  background: linear-gradient(135deg, var(--forest-green), var(--deep-burgundy));
+  color: var(--soft-cream);
+  border: none;
+  border-radius: 0;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  box-shadow: var(--page-shadow);
 }
 
-.form button {
-  background-color: #3f51b5;
-  color: white;
-  border: none;
-  cursor: pointer;
+.form button::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+  transition: left 0.5s ease;
 }
 
 .form button:hover {
-  background-color: #303f9f;
+  background: linear-gradient(135deg, var(--deep-burgundy), var(--forest-green));
+  transform: translateY(-2px);
+  box-shadow: var(--book-spine-shadow);
+}
+
+.form button:hover::before {
+  left: 100%;
+}
+
+.form button:active {
+  transform: translateY(0);
+}
+
+/* Book page lines effect */
+.form input:not([type="submit"]),
+.form select,
+.form textarea {
+  background-image: repeating-linear-gradient(
+    transparent,
+    transparent 1.4em,
+    rgba(139, 69, 19, 0.1) 1.4em,
+    rgba(139, 69, 19, 0.1) 1.5em
+  );
+}
+
+/* Label styling */
+.form label {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-family: 'Crimson Text', serif;
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--deep-burgundy);
+  text-transform: capitalize;
+  letter-spacing: 0.02em;
+}
+
+/* Error states */
+.form input:invalid,
+.form select:invalid,
+.form textarea:invalid {
+  border-color: var(--vintage-red);
+  box-shadow: inset 0 2px 4px rgba(160, 82, 45, 0.1);
+}
+
+/* Success states */
+.form input:valid,
+.form select:valid,
+.form textarea:valid {
+  border-color: var(--forest-green);
+}
+
+/* Checkbox and radio styling */
+.form input[type="checkbox"],
+.form input[type="radio"] {
+  width: auto;
+  margin-right: 0.5rem;
+  margin-bottom: 0.5rem;
+  display: inline-block;
+  accent-color: var(--antique-gold);
+}
+
+.form .checkbox-group,
+.form .radio-group {
+  display: flex;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.form .checkbox-group label,
+.form .radio-group label {
+  margin-bottom: 0;
+  margin-left: 0.5rem;
+  font-size: 1rem;
+  cursor: pointer;
+}
+
+/* File input styling */
+.form input[type="file"] {
+  padding: 0.8rem;
+  border: 2px dashed var(--warm-beige);
+  background: var(--soft-cream);
+  cursor: pointer;
+  text-align: center;
+  color: var(--ink-black);
+}
+
+.form input[type="file"]:hover {
+  border-color: var(--antique-gold);
+  background: #ffffff;
+}
+
+/* Responsive design */
+@media (max-width: 480px) {
+  .form {
+    margin: 1rem;
+    padding: 1.5rem;
+  }
+  
+  .form h2 {
+    font-size: 1.8rem;
+  }
+  
+  .form h2::before,
+  .form h2::after {
+    display: none;
+  }
+  
+  .form input,
+  .form select,
+  .form textarea,
+  .form button {
+    font-size: 1rem;
+    padding: 0.9rem;
+  }
+}
+
+/* Animation for form appearance */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.form {
+  animation: fadeInUp 0.6s ease-out;
+}
+
+/* Hover effect for the entire form */
+.form:hover {
+  box-shadow: 
+    var(--book-spine-shadow),
+    0 0 30px rgba(184, 134, 11, 0.1);
+}
+
+/* Custom scrollbar for textareas */
+.form textarea::-webkit-scrollbar {
+  width: 8px;
+}
+
+.form textarea::-webkit-scrollbar-track {
+  background: var(--warm-beige);
+}
+
+.form textarea::-webkit-scrollbar-thumb {
+  background: var(--antique-gold);
+  border-radius: 4px;
+}
+
+.form textarea::-webkit-scrollbar-thumb:hover {
+  background: var(--rich-brown);
 }
