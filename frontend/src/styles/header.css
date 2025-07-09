@@ -1,6 +1,6 @@
 .header {
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-  color: white;
+  background: linear-gradient(135deg, #8B4513 0%, #A0522D 50%, #6B4226 100%);
+  color: #F5F5DC;
   padding: 1.5rem 2.5rem;
   display: flex;
   align-items: center;
@@ -9,8 +9,8 @@
   top: 0;
   z-index: 100;
   backdrop-filter: blur(20px);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+  border-bottom: 1px solid rgba(245, 245, 220, 0.15);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
@@ -21,7 +21,7 @@
   left: 0;
   right: 0;
   bottom: 0;
-  background: linear-gradient(135deg, rgba(255, 255, 255, 0.1) 0%, transparent 50%);
+  background: linear-gradient(135deg, rgba(222, 184, 135, 0.15) 0%, transparent 50%);
   opacity: 0;
   transition: opacity 0.3s ease;
 }
@@ -34,12 +34,12 @@
   font-size: 1.8rem;
   font-weight: 700;
   text-decoration: none;
-  color: white;
+  color: #F5F5DC;
   font-family: 'Georgia', serif;
   letter-spacing: -0.02em;
   position: relative;
   transition: all 0.3s ease;
-  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
 }
 
 .logo::after {
@@ -49,7 +49,7 @@
   left: 0;
   width: 0;
   height: 2px;
-  background: linear-gradient(90deg, #ffd700, #ffed4e);
+  background: linear-gradient(90deg, #D2691E, #CD853F);
   transition: width 0.3s ease;
   border-radius: 2px;
 }
@@ -60,14 +60,15 @@
 
 .logo:hover {
   transform: translateY(-1px);
-  text-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+  text-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
+  color: #DEB887;
 }
 
 .menu-toggle {
   font-size: 1.5rem;
   background: none;
   border: none;
-  color: white;
+  color: #F5F5DC;
   display: none;
   cursor: pointer;
   padding: 0.5rem;
@@ -84,7 +85,7 @@
   left: 50%;
   width: 0;
   height: 0;
-  background: rgba(255, 255, 255, 0.2);
+  background: rgba(222, 184, 135, 0.3);
   border-radius: 50%;
   transition: all 0.3s ease;
   transform: translate(-50%, -50%);
@@ -97,7 +98,7 @@
 
 .menu-toggle:hover {
   transform: rotate(90deg);
-  background: rgba(255, 255, 255, 0.1);
+  background: rgba(222, 184, 135, 0.2);
 }
 
 .nav {
@@ -107,7 +108,7 @@
 }
 
 .nav a, .nav button {
-  color: white;
+  color: #F5F5DC;
   text-decoration: none;
   font-size: 1rem;
   font-weight: 500;
@@ -120,7 +121,7 @@
   position: relative;
   overflow: hidden;
   letter-spacing: 0.02em;
-  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
 }
 
 .nav a::before, .nav button::before {
@@ -130,7 +131,7 @@
   left: 0;
   right: 0;
   bottom: 0;
-  background: linear-gradient(135deg, rgba(255, 255, 255, 0.2) 0%, rgba(255, 255, 255, 0.1) 100%);
+  background: linear-gradient(135deg, rgba(222, 184, 135, 0.25) 0%, rgba(205, 133, 63, 0.15) 100%);
   opacity: 0;
   transition: opacity 0.3s ease;
   border-radius: 12px;
@@ -142,19 +143,20 @@
 
 .nav a:hover, .nav button:hover {
   transform: translateY(-2px);
-  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
-  background: rgba(255, 255, 255, 0.15);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.25);
+  background: rgba(222, 184, 135, 0.2);
+  color: #DEB887;
 }
 
 .nav a:active, .nav button:active {
   transform: translateY(0);
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.25);
 }
 
 /* Active/Current page indicator */
 .nav a.active {
-  background: linear-gradient(135deg, rgba(255, 255, 255, 0.2) 0%, rgba(255, 255, 255, 0.1) 100%);
-  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.1);
+  background: linear-gradient(135deg, rgba(222, 184, 135, 0.3) 0%, rgba(205, 133, 63, 0.2) 100%);
+  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.15);
 }
 
 .nav a.active::after {
@@ -164,7 +166,7 @@
   left: 50%;
   width: 20px;
   height: 2px;
-  background: #ffd700;
+  background: #D2691E;
   border-radius: 2px;
   transform: translateX(-50%);
 }
@@ -182,15 +184,15 @@
     position: absolute;
     top: 100%;
     right: 0;
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    background: linear-gradient(135deg, #8B4513 0%, #A0522D 50%, #6B4226 100%);
     flex-direction: column;
     align-items: stretch;
     padding: 1.5rem;
     display: none;
     border-radius: 0 0 16px 16px;
-    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
     backdrop-filter: blur(20px);
-    border: 1px solid rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(245, 245, 220, 0.15);
     border-top: none;
     min-width: 200px;
     animation: slideDown 0.3s ease;
@@ -225,9 +227,9 @@
 
 /* Scroll effect */
 .header.scrolled {
-  background: linear-gradient(135deg, rgba(102, 126, 234, 0.95) 0%, rgba(118, 75, 162, 0.95) 100%);
+  background: linear-gradient(135deg, rgba(139, 69, 19, 0.95) 0%, rgba(160, 82, 45, 0.95) 50%, rgba(107, 66, 38, 0.95) 100%);
   backdrop-filter: blur(30px);
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
 }
 
 /* Optional: Add some micro-interactions */
