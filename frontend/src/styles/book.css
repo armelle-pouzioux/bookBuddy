@@ -86,6 +86,7 @@
   box-shadow: 0 16px 48px rgba(0, 0, 0, 0.3);
 }
 
+
 .book-cover-placeholder {
   width: 100%;
   max-width: 300px;
@@ -222,9 +223,7 @@
   transition: transform 0.2s ease;
 }
 
-.star:hover {
-  transform: scale(1.2);
-}
+
 
 .rating-text {
   color: #8B4513;
@@ -269,9 +268,6 @@
   transition: left 0.5s ease;
 }
 
-.btn:hover::before {
-  left: 100%;
-}
 
 .btn-primary {
   background: linear-gradient(135deg, #8B4513 0%, #A0522D 100%);

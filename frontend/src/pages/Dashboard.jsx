@@ -120,10 +120,9 @@ export default function Dashboard() {
   }, [loadBooks]);
 
   return (
-    <div className="dashboard">
+    <div className="dashboard dashboard--small">
       <h2 className="welcome">Bienvenue, {user?.username}</h2>
 
-   
       <div className="search-bar">
         <input value={search} onChange={(e) => setSearch(e.target.value)} placeholder="Rechercher..." />
         <select value={sortOrder} onChange={(e) => setSortOrder(e.target.value)}>
@@ -131,7 +130,6 @@ export default function Dashboard() {
           <option value="alpha"> Alphabétique</option>
         </select>
       </div>
-
 
       <div className="category-filter">
         <select value={statusFilter} onChange={(e) => setStatusFilter(e.target.value)}>
@@ -141,13 +139,13 @@ export default function Dashboard() {
           <option value="terminé">Terminé</option>
         </select>
         <select value={categoryFilter} onChange={(e) => setCategoryFilter(e.target.value)}>
-          <option value="all">Toutes catégories</option>
+          <option value="all">Ma bibliothèque</option>
           {categories.map((cat) => (
             <option key={cat} value={cat}>{cat}</option>
           ))}
         </select>
         <select value={selectedCategory} onChange={(e) => setSelectedCategory(e.target.value)}>
-          <option value="">+ Explorer des livres Google</option>
+          <option value=""> 🌍 Explorer des livres Google</option>
           {CATEGORIES.map((cat) => (
             <option key={cat} value={cat}>{cat}</option>
           ))}
@@ -156,12 +154,11 @@ export default function Dashboard() {
 
       {loading && <p> Chargement...</p>}
       {error && <p className="error">{error}</p>}
-      <div className="books-grid">
+      <div className="books-grid books-grid--small">
         {filteredBooks.map((book) => (
-          <BookCard key={book._id} book={book} onClick={setSelectedBook} />
+          <BookCard key={book._id} book={book} onClick={setSelectedBook} small />
         ))}
       </div>
-
 
       {selectedBook && (
         <BookModal
@@ -171,7 +168,6 @@ export default function Dashboard() {
         />
       )}
 
-     
       {showAddBookForm && (
         <AddBookForm onClose={() => {
           setShowAddBookForm(false);
@@ -179,7 +175,6 @@ export default function Dashboard() {
         }} />
       )}
 
-   
       <footer className="footer">
         <button className="footer__button">
           <span className="footer__label">🏆 Rewards</span>

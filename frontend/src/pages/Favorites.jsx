@@ -29,7 +29,7 @@ export default function Favorites() {
   }, []);
 
   return (
-    <div style={{ padding: "2rem" }}>
+    <div style={{ padding: "2rem" ,color: "blanchedalmond"}}>
       <h2>❤️ Mes livres favoris</h2>
 
       {books.length === 0 ? (
