@@ -6,7 +6,7 @@
   align-items: center;
   justify-content: space-between;
   position: sticky;
-  top: 0;
+  top: auto;
   z-index: 100;
   backdrop-filter: blur(20px);
   border-bottom: 1px solid rgba(245, 245, 220, 0.15);
@@ -182,7 +182,7 @@
   
   .nav {
     position: absolute;
-    top: 100%;
+    top: 50px;
     right: 0;
     background: linear-gradient(135deg, #8B4513 0%, #A0522D 50%, #6B4226 100%);
     flex-direction: column;

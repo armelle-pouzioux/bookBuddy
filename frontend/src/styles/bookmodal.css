@@ -12,21 +12,27 @@
   backdrop-filter: blur(8px);
   opacity: 0;
   animation: fadeIn 0.3s ease forwards;
+  padding: 1rem;
+  box-sizing: border-box;
 }
 
 .modal {
   background: linear-gradient(135deg, #FFF8E1 0%, #F5F5DC 100%);
-  padding: 2.5rem;
-  border-radius: 20px;
-  max-width: 450px;
-  width: 90%;
+  padding: 1.5rem;
+  border-radius: 16px;
+  max-width: min(320px, 90vw);
+  width: auto;
+  height: auto;
+  max-height: calc(100vh - 2rem);
   position: relative;
-  box-shadow: 0 24px 64px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 16px 48px rgba(0, 0, 0, 0.3);
   border: 2px solid rgba(222, 184, 135, 0.3);
   font-family: 'Georgia', serif;
   transform: scale(0.8) translateY(20px);
   animation: modalSlideIn 0.3s cubic-bezier(0.4, 0, 0.2, 1) forwards;
   overflow: hidden;
+  box-sizing: border-box;
+  overflow-y: auto;
 }
 
 .modal::before {
@@ -35,9 +41,9 @@
   top: 0;
   left: 0;
   right: 0;
-  height: 4px;
+  height: 3px;
   background: linear-gradient(90deg, #8B4513 0%, #D2691E 50%, #A0522D 100%);
-  border-radius: 20px 20px 0 0;
+  border-radius: 16px 16px 0 0;
 }
 
 .modal::after {
@@ -49,19 +55,20 @@
   bottom: 0;
   background: linear-gradient(135deg, rgba(222, 184, 135, 0.05) 0%, transparent 50%);
   pointer-events: none;
-  border-radius: 20px;
+  border-radius: 16px;
 }
 
 .modal h2 {
   margin-top: 0;
-  margin-bottom: 1.5rem;
+  margin-bottom: 1rem;
   color: #6B4226;
-  font-size: 1.8rem;
+  font-size: clamp(1.1rem, 3.5vw, 1.4rem);
   font-weight: 700;
   text-align: center;
   position: relative;
-  padding-bottom: 1rem;
+  padding-bottom: 0.75rem;
   text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+  line-height: 1.2;
 }
 
 .modal h2::after {
@@ -70,7 +77,7 @@
   bottom: 0;
   left: 50%;
   transform: translateX(-50%);
-  width: 60px;
+  width: min(40px, 15vw);
   height: 2px;
   background: linear-gradient(90deg, #D2691E, #CD853F);
   border-radius: 2px;
@@ -78,10 +85,10 @@
 
 .modal label {
   display: block;
-  margin: 1.5rem 0 0.5rem;
+  margin: 1rem 0 0.4rem;
   color: #6B4226;
   font-weight: 600;
-  font-size: 1rem;
+  font-size: clamp(0.8rem, 2.2vw, 0.9rem);
   text-transform: uppercase;
   letter-spacing: 0.05em;
   position: relative;
@@ -90,11 +97,11 @@
 .modal label::before {
   content: '';
   position: absolute;
-  left: -10px;
+  left: -8px;
   top: 50%;
   transform: translateY(-50%);
-  width: 3px;
-  height: 16px;
+  width: 2px;
+  height: 12px;
   background: #D2691E;
   border-radius: 2px;
   opacity: 0;
@@ -108,23 +115,24 @@
 .modal input, 
 .modal select {
   width: 100%;
-  padding: 0.75rem 1rem;
-  margin-bottom: 1.5rem;
+  padding: clamp(0.5rem, 1.8vw, 0.625rem) 0.75rem;
+  margin-bottom: 1rem;
   border: 2px solid rgba(222, 184, 135, 0.3);
-  border-radius: 12px;
-  font-size: 1rem;
+  border-radius: 8px;
+  font-size: clamp(0.85rem, 2.2vw, 0.9rem);
   font-family: 'Georgia', serif;
   background: rgba(255, 255, 255, 0.8);
   color: #4A4A4A;
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   box-sizing: border-box;
+  min-height: 36px;
 }
 
 .modal input:focus, 
 .modal select:focus {
   outline: none;
   border-color: #D2691E;
-  box-shadow: 0 0 0 3px rgba(210, 105, 30, 0.1);
+  box-shadow: 0 0 0 2px rgba(210, 105, 30, 0.1);
   background: rgba(255, 255, 255, 0.95);
   transform: translateY(-1px);
 }
@@ -146,9 +154,9 @@
   appearance: none;
   background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23A0522D' stroke-width='2'%3e%3cpath d='M6 9l6 6 6-6'/%3e%3c/svg%3e");
   background-repeat: no-repeat;
-  background-position: right 0.75rem center;
-  background-size: 1.5rem;
-  padding-right: 2.5rem;
+  background-position: right 0.5rem center;
+  background-size: 1.2rem;
+  padding-right: 2rem;
 }
 
 .modal select::-ms-expand {
@@ -157,14 +165,14 @@
 
 .modal .close {
   position: absolute;
-  right: 1.5rem;
-  top: 1.5rem;
+  right: 1rem;
+  top: 1rem;
   border: none;
   background: linear-gradient(135deg, rgba(222, 184, 135, 0.2) 0%, rgba(205, 133, 63, 0.1) 100%);
-  font-size: 1.5rem;
+  font-size: clamp(1rem, 2.5vw, 1.2rem);
   cursor: pointer;
-  width: 40px;
-  height: 40px;
+  width: clamp(28px, 6vw, 32px);
+  height: clamp(28px, 6vw, 32px);
   border-radius: 50%;
   display: flex;
   align-items: center;
@@ -174,13 +182,15 @@
   z-index: 10;
   font-weight: 600;
   border: 2px solid transparent;
+  min-height: 32px;
+  min-width: 32px;
 }
 
 .modal .close:hover {
   background: linear-gradient(135deg, #D2691E 0%, #CD853F 100%);
   color: #F5F5DC;
   transform: scale(1.1) rotate(90deg);
-  box-shadow: 0 4px 16px rgba(139, 69, 19, 0.3);
+  box-shadow: 0 3px 12px rgba(139, 69, 19, 0.3);
   border-color: rgba(245, 245, 220, 0.2);
 }
 
@@ -190,10 +200,10 @@
 
 /* Form Button Styles */
 .modal .btn {
-  padding: 0.75rem 2rem;
+  padding: clamp(0.5rem, 1.8vw, 0.625rem) 1.5rem;
   border: none;
-  border-radius: 12px;
-  font-size: 1rem;
+  border-radius: 8px;
+  font-size: clamp(0.85rem, 2.2vw, 0.9rem);
   font-weight: 600;
   cursor: pointer;
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
@@ -201,8 +211,9 @@
   letter-spacing: 0.02em;
   position: relative;
   overflow: hidden;
-  margin-top: 1rem;
+  margin-top: 0.75rem;
   width: 100%;
+  min-height: 36px;
 }
 
 .modal .btn::before {
@@ -223,31 +234,31 @@
 .modal .btn-primary {
   background: linear-gradient(135deg, #8B4513 0%, #A0522D 100%);
   color: #F5F5DC;
-  box-shadow: 0 4px 16px rgba(139, 69, 19, 0.3);
+  box-shadow: 0 3px 12px rgba(139, 69, 19, 0.3);
 }
 
 .modal .btn-primary:hover {
   transform: translateY(-2px);
-  box-shadow: 0 8px 24px rgba(139, 69, 19, 0.4);
+  box-shadow: 0 6px 18px rgba(139, 69, 19, 0.4);
   background: linear-gradient(135deg, #A0522D 0%, #8B4513 100%);
 }
 
 .modal .btn-secondary {
   background: linear-gradient(135deg, #DEB887 0%, #D2691E 100%);
   color: #6B4226;
-  box-shadow: 0 4px 16px rgba(222, 184, 135, 0.3);
+  box-shadow: 0 3px 12px rgba(222, 184, 135, 0.3);
 }
 
 .modal .btn-secondary:hover {
   transform: translateY(-2px);
-  box-shadow: 0 8px 24px rgba(222, 184, 135, 0.4);
+  box-shadow: 0 6px 18px rgba(222, 184, 135, 0.4);
   background: linear-gradient(135deg, #D2691E 0%, #DEB887 100%);
 }
 
 .modal .btn-group {
   display: flex;
-  gap: 1rem;
-  margin-top: 2rem;
+  gap: 0.75rem;
+  margin-top: 1.5rem;
 }
 
 .modal .btn-group .btn {
@@ -259,7 +270,7 @@
 /* Form Validation States */
 .modal .form-group {
   position: relative;
-  margin-bottom: 1.5rem;
+  margin-bottom: 1rem;
 }
 
 .modal .form-group.error input,
@@ -270,7 +281,7 @@
 
 .modal .form-group.error .error-message {
   color: #DC143C;
-  font-size: 0.875rem;
+  font-size: clamp(0.75rem, 1.8vw, 0.8rem);
   margin-top: 0.25rem;
   display: block;
   font-style: italic;
@@ -320,54 +331,150 @@
 
 /* Responsive Design */
 @media (max-width: 768px) {
-  .modal {
-    padding: 2rem;
-    max-width: 95%;
-    margin: 1rem;
+  .modal-overlay {
+    padding: 0.5rem;
   }
   
-  .modal h2 {
-    font-size: 1.5rem;
+  .modal {
+    padding: 1.25rem;
+    max-width: 95vw;
+    border-radius: 12px;
   }
   
   .modal .btn-group {
     flex-direction: column;
-    gap: 0.75rem;
+    gap: 0.5rem;
   }
   
   .modal .close {
-    right: 1rem;
-    top: 1rem;
-    width: 35px;
-    height: 35px;
-    font-size: 1.3rem;
+    right: 0.75rem;
+    top: 0.75rem;
   }
 }
 
 @media (max-width: 480px) {
+  .modal-overlay {
+    padding: 0.25rem;
+  }
+  
   .modal {
-    padding: 1.5rem;
-    border-radius: 16px;
+    padding: 1rem;
+    border-radius: 10px;
+    max-height: calc(100vh - 0.5rem);
   }
   
   .modal h2 {
-    font-size: 1.3rem;
-    margin-bottom: 1rem;
+    margin-bottom: 0.75rem;
+    padding-bottom: 0.5rem;
   }
   
   .modal input, 
   .modal select {
-    padding: 0.625rem 0.875rem;
-    font-size: 0.9rem;
+    margin-bottom: 0.75rem;
+    border-radius: 6px;
   }
   
   .modal .btn {
-    padding: 0.625rem 1.5rem;
-    font-size: 0.9rem;
+    border-radius: 6px;
+  }
+  
+  .modal .close {
+    right: 0.5rem;
+    top: 0.5rem;
   }
 }
 
-/* Dark mode variant (optional) */
+/* Very small screens */
+@media (max-width: 320px) {
+  .modal-overlay {
+    padding: 0.125rem;
+  }
+  
+  .modal {
+    padding: 0.75rem;
+    max-height: calc(100vh - 0.25rem);
+    max-width: 98vw;
+  }
+  
+  .modal h2 {
+    margin-bottom: 0.5rem;
+  }
+  
+  .modal input, 
+  .modal select {
+    margin-bottom: 0.5rem;
+  }
+  
+  .modal .btn-group {
+    gap: 0.25rem;
+  }
+}
+
+/* Landscape orientation on mobile */
+@media (max-height: 600px) and (orientation: landscape) {
+  .modal-overlay {
+    align-items: flex-start;
+    padding-top: 0.5rem;
+  }
+  
+  .modal {
+    max-height: calc(100vh - 1rem);
+    margin-top: 0;
+  }
+  
+  .modal h2 {
+    font-size: 1.1rem;
+    margin-bottom: 0.75rem;
+  }
+  
+  .modal input, 
+  .modal select {
+    padding: 0.4rem 0.6rem;
+    margin-bottom: 0.75rem;
+  }
+  
+  .modal .btn-group {
+    margin-top: 0.75rem;
+  }
+}
+
+/* High DPI screens */
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+  .modal {
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+  }
+}
+
+/* Reduce motion for accessibility */
+@media (prefers-reduced-motion: reduce) {
+  .modal-overlay {
+    animation: none;
+  }
+  
+  .modal {
+    animation: none;
+    transform: none;
+  }
+  
+  .modal .close {
+    transition: none;
+  }
+  
+  .modal .btn {
+    transition: none;
+  }
+  
+  .modal .btn::before {
+    transition: none;
+  }
+  
+  .modal input, 
+  .modal select {
+    transition: none;
+  }
+}
+
+/* Dark mode variant */
 @media (prefers-color-scheme: dark) {
   .modal {
     background: linear-gradient(135deg, #2C1810 0%, #3E2723 100%);
@@ -391,5 +498,22 @@
   
   .modal input::placeholder {
     color: #CD853F;
+  }
+  
+  .modal .form-group.error input,
+  .modal .form-group.error select {
+    background: rgba(220, 20, 60, 0.1);
+  }
+  
+  .modal .form-group.success input,
+  .modal .form-group.success select {
+    background: rgba(34, 139, 34, 0.1);
+  }
+}
+
+/* Print styles */
+@media print {
+  .modal-overlay {
+    display: none !important;
   }
 }

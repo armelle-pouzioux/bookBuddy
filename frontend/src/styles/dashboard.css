@@ -522,9 +522,9 @@ body {
   backdrop-filter: blur(20px);
 }
 
-/* Footer - Luxury Navigation */
 .footer {
   position: fixed;
+  height: 40px;
   bottom: 0;
   left: 0;
   right: 0;
