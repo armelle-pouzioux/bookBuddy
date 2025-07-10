@@ -11,7 +11,7 @@
   --ink-black: #2c2c2c;
   --soft-cream: #faf8f3;
   --leather-brown: #6b4423;
-  --vintage-red: #a0522d;
+  --vintage-red:  brown;
   --page-shadow: 0 4px 20px rgba(139, 69, 19, 0.15);
   --book-spine-shadow: 0 8px 32px rgba(114, 47, 55, 0.2);
   --golden-glow: 0 0 20px rgba(184, 134, 11, 0.3);
@@ -113,7 +113,7 @@
 .form textarea:focus {
   outline: none;
   border-color: var(--antique-gold);
-  background:brown;
+  background:white;
   box-shadow: 
     inset 0 2px 4px rgba(139, 69, 19, 0.1),
     var(--golden-glow);
@@ -235,7 +235,7 @@
 }
 
 select, option {
-  background-color: #fff;      /* White background */
+  background-color:#fff;      /* White background */
   color: #000;                 /* Black text */
 }
 
